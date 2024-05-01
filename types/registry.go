@@ -95,6 +95,8 @@ func regBaseType() {
 		&Seal{},
 		&PreRuntime{},
 		&Exposure{},
+		&PagedExposure{},
+		&PagedExposureMetadata{},
 		&RawAuraPreDigest{},
 		&RawBabePreDigestPrimary{},
 		&RawBabePreDigestSecondary{},

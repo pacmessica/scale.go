@@ -282,6 +282,26 @@ func (s *IndividualExposure) Init(data scaleBytes.ScaleBytes, option *ScaleDecod
 	s.Struct.Init(data, option)
 }
 
+type PagedExposure struct{ Struct }
+
+func (s *PagedExposure) Init(data scaleBytes.ScaleBytes, option *ScaleDecoderOption) {
+	s.Struct.TypeMapping = &TypeMapping{
+		Names: []string{"pageTotal", "others"},
+		Types: []string{"Compact<u128>", "Vec<IndividualExposure<AccountId, Balance>>"},
+	}
+	s.Struct.Init(data, option)
+}
+
+type PagedExposureMetadata struct{ Struct }
+
+func (s *PagedExposureMetadata) Init(data scaleBytes.ScaleBytes, option *ScaleDecoderOption) {
+	s.Struct.TypeMapping = &TypeMapping{
+		Names: []string{"total", "own", "nominatorCount", "pageCount"},
+		Types: []string{"Compact<u128>", "Compact<u128>", "u32", "u32"},
+	}
+	s.Struct.Init(data, option)
+}
+
 type RawAuraPreDigest struct{ Struct }
 
 func (s *RawAuraPreDigest) Init(data scaleBytes.ScaleBytes, option *ScaleDecoderOption) {
